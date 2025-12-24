@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log("Login attempted with:", username);
+    // Future login logic here
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app-container">
+      <div className="bg-decoration"></div>
+
+      <div className="content-wrapper">
+        <div className="login-card">
+          <div className="logos-container">
+            <img src="/sapdlogo.png" alt="LSPD Logo" className="logo" />
+            <img src="/dblogo.png" alt="Detective Bureau Logo" className="logo" />
+          </div>
+
+          <div className="header-text">
+            <h1>Los Santos Police Department</h1>
+            <h2>Detective Bureau</h2>
+          </div>
+
+          <form className="login-form" onSubmit={handleLogin}>
+            <div className="input-group">
+              <input
+                type="text"
+                placeholder="Nombre de Usuario"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <input
+                type="password"
+                placeholder="Contraseña"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            <button type="submit" className="login-btn">
+              Access Database
+            </button>
+          </form>
+
+          <div className="footer-text">
+            <p>Authorized Personnel Only • Secure Connection</p>
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
